@@ -23,7 +23,7 @@ function MovieList() {
           </thead>
           <tbody>
             {mds.map((m) => (
-              <tr key={m.MovieId}>
+              <tr>
                 <td>{m.Title}</td>
                 <td>{m.Year}</td>
                 <td>{m.Director}</td>
