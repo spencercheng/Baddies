@@ -8,6 +8,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 
 function App() {
   return (
+    // links to the other pages
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <ul className="navbar-nav">

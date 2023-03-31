@@ -3,6 +3,7 @@ import data from './MovieData.json';
 const mds = data.MovieData;
 
 function MovieList() {
+  // Movie Collection
   return (
     <>
       <div>
