@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useDebugValue, useEffect, useState } from 'react';
+import { Food } from './types/Movie';
 import data from './MovieData.json';
-const mds = data.MovieData;
 
 function MovieList() {
-  // Movie Collection
+  // Movie Colletion
+  const [foodDate, setFoodDate] = useState<Food[]>([]);
+  // Making sure they don't keep checking the server  for updates
+  useEffect(() => {
+    const fetchFood = async () => {
+      const response = await fetch('https://localhost:4000/api/food');
+      const data = await response.json();
+      setFoodDate(data);
+    };
+    fetchFood();
+  }, []);
+
   return (
     <>
       <div>
@@ -20,17 +31,21 @@ function MovieList() {
               <th>Rating</th>
               <th>Category</th>
               <th>Edited</th>
+              <th>LentTo</th>
+              <th>Notes</th>
             </tr>
           </thead>
           <tbody>
-            {mds.map((m) => (
-              <tr>
-                <td>{m.Title}</td>
-                <td>{m.Year}</td>
-                <td>{m.Director}</td>
-                <td>{m.Rating}</td>
-                <td>{m.Category}</td>
-                <td>{m.Edited}</td>
+            {foodDate.map((m) => (
+              <tr key={m.movieId}>
+                <td>{m.title}</td>
+                <td>{m.year}</td>
+                <td>{m.director}</td>
+                <td>{m.rating}</td>
+                <td>{m.category}</td>
+                <td>{m.edited}</td>
+                <td>{m.lentTo}</td>
+                <td>{m.notes}</td>
               </tr>
             ))}
           </tbody>
